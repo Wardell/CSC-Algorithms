@@ -1,0 +1,16 @@
+package lab1;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		PrimeIterator it = new PrimeIterator(10);
+		System.out.println(it.next());  // prints out 2
+		while ( it.hasNext() ) {
+		  System.out.println(it.next()); // prints out 3, 5, and 7 before hasNext returns false
+		}
+
+	}
+
+}

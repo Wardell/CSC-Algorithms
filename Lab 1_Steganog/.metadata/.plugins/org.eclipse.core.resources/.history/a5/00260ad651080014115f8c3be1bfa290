@@ -1,0 +1,32 @@
+package lab1;
+
+import java.io.IOException;
+import java.io.File;
+import java.awt.image.BufferedImage;
+import edu.neumont.ui.Picture;
+
+public class Steganog 
+{
+	public Picture embedIntoImage(Picture cleanImage, String message) throws IOException 
+	{ 
+		//Picture crypticPic  =new Picture(message);
+		BufferedImage temp = cleanImage.getBufferedImage();
+		int width = cleanImage.width();
+		int height = cleanImage.height();
+		
+		for(int row = 0; row < width; row++ )
+		{
+			for(int col = 0; col < height; col++)
+			{
+				//cleanImage.
+			}
+		}
+		return null;
+	}
+
+	public String retreiveFromImage(Picture imageWithSecretMessage) throws IOException
+	{
+		return null;
+	}
+
+}

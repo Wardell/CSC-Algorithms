@@ -1,0 +1,39 @@
+package lab1;
+import java.util.List; 
+import java.util.Iterator;
+
+
+public class PrimeIterator implements Iterator<Integer> {
+
+	private List<Integer> primeNumbers;
+	private boolean[] isPrime;
+	public PrimeIterator(int max) 
+	{		 
+			primeNumbers = new List<Integer>();
+	        isPrime = new boolean[max + 1];
+	        for (int i = 2; i <= max; i++) {
+	            isPrime[i] = true;
+	        }
+
+	        for (int i = 2; i*i <= max; i++) {
+
+	            if (isPrime[i]) {
+	                for (int j = i; i*j <= max; j++) {
+	                    isPrime[i*j] = false;
+	                }
+	            }
+	        }
+	}
+	@Override
+	public boolean hasNext() {
+		
+		return false;
+	}
+
+	@Override
+	public Integer next() {
+		
+		return null;
+	}
+
+}
