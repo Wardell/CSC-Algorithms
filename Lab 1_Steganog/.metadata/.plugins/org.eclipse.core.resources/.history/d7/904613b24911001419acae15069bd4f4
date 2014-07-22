@@ -1,0 +1,16 @@
+
+@SuppressWarnings("hiding")
+public class PossibleWords implements Comparable<PossibleWords> 
+{
+
+	public int freq;
+	private String word;
+	@Override
+	public int compareTo(PossibleWords arg0) 
+	{
+		// TODO Auto-generated method stub
+		int result=0;
+		return result  =  this.freq > arg0.freq ? 1 : -1 ;
+	}
+	
+}

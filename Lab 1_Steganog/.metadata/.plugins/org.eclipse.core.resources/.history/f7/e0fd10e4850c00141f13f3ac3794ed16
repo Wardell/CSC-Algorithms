@@ -1,0 +1,56 @@
+import java.util.ArrayList;
+public class Experiments {
+
+	public static int iterativeFactorical(int number)
+	{
+	  int num = number -1;
+	  
+	  while(num > 1)
+	  {
+		  number *= num;
+		  num--;
+	  }
+	 
+	  return number;
+	  
+	  
+	}
+	
+	public static int recursiveFactorial(int number)
+	{
+		int num =  number * --number;
+		if(number < 1)
+			return num;
+		
+		else
+		{
+			
+			return recursiveFactorial(number);
+		}
+	}
+	public static void main(String[] args)
+	{
+		//System.out.println(iterativeFactorical(8));
+		//System.out.println(recursiveFactorial(8));
+		BackTracker bt = new BackTracker();
+		ArrayList <Integer> numberArray  = new ArrayList();
+		numberArray.add(2);
+		numberArray.add(3);
+		numberArray.add(5);
+		numberArray.add(9);
+		
+		ArrayList<Integer> array = new ArrayList(bt.findPermutations(numberArray));
+		int hold = 0;
+		for(int i= 0; i < array.size();i++)
+		{
+			for(int j = 0; j < numberArray.size();j++)
+			{
+				hold++;
+				System.out.print(array.get(hold));
+			}
+			System.out.println();
+		}
+		}
+	
+	
+}

@@ -1,0 +1,22 @@
+import java.util.List;
+import java.util.ArrayList;
+import edu.neumont.nlp.DecodingDictionary;
+
+public class ExaustiveDecoder {
+	 private DecodingDictionary dd = new DecodingDictionary();
+	// private ExhaustiveDecoder decoder = new ExhaustiveDecoder(dd, 100);
+	public List<String> decode (String message)
+	{
+		List perm
+		return null;
+	}
+	
+	
+	public boolean retraceSteps()
+	{
+		return false;
+	}
+	
+
+
+}

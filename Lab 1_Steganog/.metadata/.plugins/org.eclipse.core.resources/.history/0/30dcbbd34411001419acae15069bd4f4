@@ -1,0 +1,80 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+
+import edu.neumont.nlp.DecodingDictionary;
+
+public class ExaustiveDecoder {
+	 private DecodingDictionary dd = new DecodingDictionary(); 
+	// private ExhaustiveDecoder decoder = new ExhaustiveDecoder(dd, 100);
+	public List<String> decode (String message)
+	{
+		List permutations = new ArrayList();
+		List soFar = new ArrayList();
+		//retraceSteps(soFar,message,permutations);
+		return permutations;
+	}
+	
+	public String decrypter(String lastWord, String sentance, String currentCode)
+	{
+		if(currentCode.isEmpty())
+		{
+			return sentance;
+		}
+		
+		else
+		{
+			int index = 0;
+			int end =  currentCode.length();
+			while(index < end)
+			{
+				String charater = currentCode.substring(0,index+1);
+				  Set <String>  possibleWords = dd.getWordsForCode(charater);
+				  
+				  if(possibleWords != null)
+				  {
+					  for(String s :  possibleWords)
+					  {
+						  if(lastWord.length() == 0 || checkSentance(sentance) == 5)
+						  {
+							  String newWords =  sentance + s + " ";
+							  String remaning = currentCode.substring(index + 1);
+							  System.out.println(newWords);
+							  return decrypter(s, newWords, remaning);
+						  }
+					  }
+				  }
+				  
+				  else 
+				  {
+					//dd.getCodes()
+				  }
+				  
+	
+				  }
+			}
+		return sentance;	
+		
+	}
+	
+	public float checkSentance(String sentance)
+	{
+		String [] splitString = sentance.split(" ");
+		float frequency =  1.0f;
+		String lastWord = "";
+		for(int i =0; i < splitString.length && i +1 < splitString.length;i++)
+		{
+			if(lastWord.isEmpty())
+			{
+				lastWord = splitString[i];
+			}
+			else
+			{
+				frequency *= dd.frequencyOfFollowingWord(lastWord, splitString[i]) / 1000;
+				lastWord = splitString[i];
+			}
+		}
+		return frequency;
+	}
+
+}

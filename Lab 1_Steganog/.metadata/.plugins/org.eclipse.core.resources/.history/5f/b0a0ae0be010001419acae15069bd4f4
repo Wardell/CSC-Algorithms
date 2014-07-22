@@ -1,0 +1,86 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+
+import edu.neumont.nlp.DecodingDictionary;
+import edu.neumont.nlp.BigramDictionaryReader;
+
+public class ExaustiveDecoder {
+	 private DecodingDictionary dd = new DecodingDictionary(); 
+	// private ExhaustiveDecoder decoder = new ExhaustiveDecoder(dd, 100);
+	public List<String> decode (String message)
+	{
+		List permutations = new ArrayList();
+		List soFar = new ArrayList();
+		retraceSteps(soFar,message,permutations);
+		return permutations;
+	}
+	
+	public String decrypter(String lastWord, String sentance, String currentCode)
+	{
+		if(currentCode.isEmpty())
+		{
+			return sentance;
+		}
+		
+		else
+		{
+			int index = 0;
+			int end =  currentCode.length();
+			while(index < end)
+			{
+				String charater = currentCode.substring(0,index);
+				  Set <String>  possibleWords = dd.getWordsForCode(charater);
+				  
+				  if(possibleWords != null)
+				  {
+					  for(String s :  possibleWords)
+					  {
+						  if(lastWord.length() == 0 || dd.frequencyOfFollowingWord(lastWord, s) == 25)
+						  {
+							  String newWords =  sentance + s + " ";
+							  String remaning = currentCode.substring(index, index + 1);
+							  System.out.println(newWords);
+							  return decrypter(s, newWords, remaning);
+						  }
+						  
+						  else 
+						  {
+							  String newWords =  sentance + s + " ";
+							  String remaning = currentCode.substring(index, index + 1);
+							  System.out.println(newWords);
+							  return  decrypter(lastWord, newWords,remaning);
+						  }
+					  }
+				  }
+				  
+				  else 
+				  {
+					  return "Empty";
+				  }
+				  
+	
+				  }
+			}
+		return sentance;
+			
+		
+	}
+	
+	public void retraceSteps(List soFar, String togo,List permutations)
+	{
+		if(togo.isEmpty())
+		{
+			permutations.add(soFar);
+			return;
+		}
+		
+		for(int index = 0; index < togo.length(); index++)
+		{
+			
+		}
+	}
+	
+
+
+}

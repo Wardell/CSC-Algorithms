@@ -1,0 +1,16 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+
+public class ExaustiveDecoderTest {
+
+	@Test
+	public void test() 
+	{
+		ExaustiveDecoder ed = new ExaustiveDecoder();
+		//ed.decrypter("", "", "...-...-..-....-....--.-.-.-.");
+		System.out.println(ed.decode("...-...-..-....-....--.-.-.-.").toString());
+	}
+
+}
