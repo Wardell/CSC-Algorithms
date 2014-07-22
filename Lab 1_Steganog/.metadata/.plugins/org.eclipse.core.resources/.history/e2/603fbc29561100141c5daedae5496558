@@ -10,7 +10,7 @@ public class ExaustiveDecoderTest {
 	{
 		ExaustiveDecoder ed = new ExaustiveDecoder();
 		//ed.decrypter("", "", "...-...-..-....-....--.-.-.-.");
-		ed.decode("...-...-..-....-....--.-.-.-.");
+		ed.decode("...-...-..-....-....--.-.-.-.").toString();
 		for(int i =0; i < ed.permutations.size();i++)
 		{
 			System.out.println( ed.permutations.get(i));

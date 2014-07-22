@@ -14,7 +14,7 @@ public class ExaustiveDecoder {
 	{
 		
 		decrypter("","",message);
-		return lastPassThough();
+		return lastPassThough(permutations);
 	}
 	
 	public void decrypter(String lastWord, String sentance, String currentCode)
@@ -55,15 +55,12 @@ public class ExaustiveDecoder {
 		
 	}
 	
-	public List<String>lastPassThough()
+	public List<String>lastPassThough(List<String> permutations)
 	{
 		List<PossibleWords> pw = new ArrayList<PossibleWords>();
 		for(String s : permutations)
 		{
-			float c = checkSentance(s);
-		
-				pw.add(new PossibleWords(checkSentance(s), s));
-			
+			pw.add(new PossibleWords(checkSentance(s), s));
 		}
 		
 		Collections.sort(pw);
@@ -89,7 +86,7 @@ public class ExaustiveDecoder {
 			}
 			else
 			{
-				frequency *= ((float)dd.frequencyOfFollowingWord(lastWord, s) / 1000.0f);
+				frequency *= (dd.frequencyOfFollowingWord(lastWord, s) / 1000.0f);
 				lastWord = s;
 			}
 		}
