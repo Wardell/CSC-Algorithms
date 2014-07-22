@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ExaustiveDecoderTest" project="Steganog" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testsuite name="ExaustiveDecoderTest" time="213.997">
+    <testcase name="test" classname="ExaustiveDecoderTest" time="213.997">
+      <error>java.lang.OutOfMemoryError: Java heap space&#13;
+	at java.util.Arrays.copyOf(Unknown Source)&#13;
+	at java.util.ArrayList.grow(Unknown Source)&#13;
+	at java.util.ArrayList.ensureExplicitCapacity(Unknown Source)&#13;
+	at java.util.ArrayList.ensureCapacityInternal(Unknown Source)&#13;
+	at java.util.ArrayList.add(Unknown Source)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:47)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decrypter(ExaustiveDecoder.java:45)&#13;
+	at ExaustiveDecoder.decode(ExaustiveDecoder.java:16)&#13;
+	at ExaustiveDecoderTest.test(ExaustiveDecoderTest.java:13)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)&#13;
+&#13;
+</error>
+    </testcase>
+  </testsuite>
+</testrun>

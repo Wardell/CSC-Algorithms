@@ -13,7 +13,7 @@ public class ExaustiveDecoderTest {
 		ed.decode("...-...-..-....-....--.-.-.-.");
 		for(int i =0; i < ed.permutations.size();i++)
 		{
-			System.out.println( ed.permutations.get(i));
+			//System.out.println( ed.permutations.get(i));
 		}
 	}
 

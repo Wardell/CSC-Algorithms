@@ -9,10 +9,10 @@ public class ExaustiveDecoder {
 	 private DecodingDictionary dd = new DecodingDictionary(); 
 	 public List <String>permutations = new ArrayList<String>();
 	 public List <PossibleWords> pw = new ArrayList<PossibleWords>();
-	// private ExhaustiveDecoder decoder = new ExhaustiveDecoder(dd, 100);
+
+	 
 	public List<String> decode (String message)
 	{
-		
 		decrypter("","",message);
 		return lastPassThough();
 	}
@@ -21,7 +21,7 @@ public class ExaustiveDecoder {
 	{
 		if(currentCode.isEmpty())
 		{
-			return;
+			  permutations.add(sentance);
 		}
 		
 		else
@@ -37,14 +37,14 @@ public class ExaustiveDecoder {
 				  {
 					  for(String s :  possibleWords)
 					  {
-						  if(lastWord.length() == 0 || checkSentance(sentance) > .0001f)
+						  if(lastWord.isEmpty() || checkSentance(sentance) > 0.0001f)
 						  {
 							  String newWords =  sentance + s + " ";
 							  String remaning = currentCode.substring(index);
-							 // System.out.println(sentance);
+							  //System.out.println(sentance + " Freq: " +checkSentance(sentance) );
 							  decrypter(s, newWords, remaning);
 						  }
-						  permutations.add(sentance);
+						
 					  }
 					  
 				  }
@@ -62,16 +62,27 @@ public class ExaustiveDecoder {
 		{
 			float c = checkSentance(s);
 		
-				pw.add(new PossibleWords(checkSentance(s), s));
+			pw.add(new PossibleWords(checkSentance(s), s));
 			
 		}
 		
+		for(int i =0; i < pw.size();i++)
+		{
+			if(pw.get(i).freq <= 0.0)
+			{
+				pw.remove(i);
+			}
+		}
 		Collections.sort(pw);
 		permutations = new ArrayList<String>();
 		final int TOPTWENTY = 20;
+		
+		
 		for(int i = 0; i < TOPTWENTY; i++)
 		{
-			permutations.add(pw.get(i).word);
+			float  temp = pw.get(i).freq;
+			permutations.add(pw.get(i).toString());
+			System.out.println(pw.get(i).toString());
 		}
 		return permutations;
 		
@@ -89,7 +100,7 @@ public class ExaustiveDecoder {
 			}
 			else
 			{
-				frequency *= ((float)dd.frequencyOfFollowingWord(lastWord, s) / 1000.0f);
+				frequency *= (dd.frequencyOfFollowingWord(lastWord, s) / 1000.0f);
 				lastWord = s;
 			}
 		}

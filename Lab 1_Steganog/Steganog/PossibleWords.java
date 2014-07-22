@@ -16,9 +16,22 @@ public class PossibleWords implements Comparable<PossibleWords>
 	{
 		// TODO Auto-generated method stub
 		int result=0;
-		return result  =  this.freq > arg0.freq ? 1 : -1 ;
+		if(this.freq > arg0.freq)
+		{
+			result = 1;
+		}
+		
+		else if(this.freq < arg0.freq)
+		{
+			result = -1;
+		}
+		return result;
 	}
 	
-
+	@Override
+	public String toString()
+	{
+		return word + " Frequency: " + " " + freq; 
+	}
 	
 }
