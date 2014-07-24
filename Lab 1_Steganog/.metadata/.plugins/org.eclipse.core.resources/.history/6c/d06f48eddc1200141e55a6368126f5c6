@@ -1,0 +1,108 @@
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+
+import edu.neumont.nlp.DecodingDictionary;
+
+public class ExaustiveDecoder {
+	 private DecodingDictionary dd = new DecodingDictionary(); 
+	 public List <String>permutations = new ArrayList<String>();
+	 public List <PossibleWords> pw = new ArrayList<PossibleWords>();
+
+	 
+	public List<String> decode (String message)
+	{
+		decrypter("",message);
+		return lastPassThough();
+	}
+	
+	public void decrypter(String sentance, String currentCode)
+	{
+		if(currentCode.isEmpty())
+		{
+			if(checkSentance(sentance) < .8f)
+			{
+				return;
+			}
+			  permutations.add(sentance);
+		}
+		
+		else
+		{
+			int index = 0;
+			int end =  currentCode.length();
+			while(index <= end)
+			{
+				String charater = currentCode.substring(0,index);
+				  Set <String>  possibleWords = dd.getWordsForCode(charater);
+				  
+				  if(possibleWords != null)
+				  {
+					  for(String s :  possibleWords)
+					  {
+						  if(checkSentance(sentance) > 0.0001f)
+						  {
+							  String newWords =  sentance + s + " ";
+							  String remaning = currentCode.substring(index);
+							//  System.out.println(sentance + " Freq: " +checkSentance(sentance) );
+							  decrypter(newWords, remaning);
+						  }
+						
+					  }
+					  
+				  }
+				
+				  index++;
+			}
+			}	
+		
+	}
+	
+	public List<String>lastPassThough()
+	{
+		//List<PossibleWords> pw = new ArrayList<PossibleWords>();
+		for(String s : permutations)
+		{
+			float c = checkSentance(s);
+		
+			pw.add(new PossibleWords(checkSentance(s), s));
+			
+		}
+		
+		Collections.sort(pw);
+		//Collections.reverse(pw);
+		permutations = new ArrayList<String>();
+		final int TOPTWENTY = 20;
+		
+		
+		for(int i = 0; i < TOPTWENTY && i < pw.size(); i++)
+		{
+			//float  temp = pw.get(i).freq;
+			permutations.add(pw.get(i).toString());
+			//System.out.println(pw.get(i).toString());
+		}
+		return permutations;
+		
+	}
+	public float checkSentance(String sentance)
+	{
+		String [] splitString = sentance.split(" ");
+		float frequency =  1.0f;
+		String lastWord = "";
+		for(String s : splitString)
+		{
+			if(lastWord.isEmpty())
+			{
+				lastWord = s;
+			}
+			else
+			{
+				frequency *= (dd.frequencyOfFollowingWord(lastWord, s) / 100.0f);
+				lastWord = s;
+			}
+		}
+		return frequency;
+	}
+
+}
